@@ -142,3 +142,125 @@ return (
 
 ✅ Tip
 React may feel confusing at first — but breaking it into small components and reusing them makes UI development faster and more consistent.
+
+---
+
+## React Lesson 6: Component Behaviour
+
+## 🎯 Learning Objectives
+
+- Understand what "behaviour" means in a React component
+- Add behaviour to components using event handlers like `onClick`
+- Pass data between components using `props`
+- Practise building dynamic, reusable components
+
+---
+
+## 🧠 What is Behaviour?
+
+Behaviour in React = how a component **responds to events**, like clicks or form inputs.
+
+🟢 You’ve done this in vanilla JS:
+- Attach event listeners
+- Write functions to respond
+
+🟦 In React:
+- Use props like `onClick`
+- Define behaviour inside the component file (keeps logic together)
+
+### Example:
+
+```jsx
+function MyButton() {
+  function handleClick() {
+    alert('Button clicked!');
+  }
+
+  return <button onClick={handleClick}>Click Me</button>;
+}
+```
+
+🧪 Exercise 1: Add an onClick Event
+Goal: Create a button that shows a message when clicked.
+
+Steps:
+- Define a handleClick function inside your component
+- Attach it to the button via onClick
+- Test the output in your browser console or alert
+
+### Props: Passing Information Between Components
+What Are Props?
+Props = properties passed from a parent to a child component
+
+Think of them like function arguments in Python or JavaScript
+
+Syntax
+```jsx
+<Button buttonText="Click Here" />
+```
+Inside the Button component:
+```jsx
+function Button(props) {
+  return <button>{props.buttonText}</button>;
+}
+```
+OR use destructuring:
+```jsx
+function Button({ buttonText }) {
+  return <button>{buttonText}</button>;
+}
+```
+📝 All components receive a props object by default.
+
+### Exercise 2: Make Button Text a Prop
+Goal: Change the button text using props instead of hard-coding.
+
+Steps:
+- Pass buttonText from the parent (e.g., App.js)
+
+- Access props.buttonText inside the Button component
+
+- Replace hardcoded button text with {props.buttonText}
+
+Bonus: Add Random Messages
+```jsx
+function handleClick() {
+  const messages = ['Hello!', 'You clicked!', 'Nice one!'];
+  const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+  alert(randomMsg);
+}
+```
+🧪 Exercise 3: Add Multiple Props
+Goal: Pass multiple props and combine them
+
+Example:
+```jsx
+<Button first="Click" second=" Me!" />
+```
+Inside the component:
+```jsx
+function Button({ first, second }) {
+  return <button>{first + second}</button>;
+}
+```
+
+🧾 Summary
+Concept	Explanation
+- Behaviour	Use onClick, onChange, etc., to trigger actions
+
+- Props	Data passed from one component to another
+
+- Reusable Components	Build one component that changes based on props
+
+🔁 React is most powerful when components are:
+
+- Modular
+- Customisable
+- Interactive
+
+🧠 Keep Googling! Everyone uses the docs and StackOverflow.
+
+✅ Next Steps
+Practise combining props with useState
+
+Build forms and timers with dynamic behaviours
