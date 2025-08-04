@@ -2,7 +2,7 @@ import './App.css';
 import Button from './components/button/Button';
 import ClassButton from './components/class-button/ClassButton';
 import ExampleClassButton from './components/example-class-button/ExampleClassButton';
-
+import AlphabetButton from './components/alphabet-button/AlphabetButton';
 
 function App() {
   const buttonOneMessageArray = ['Message 1', 'Message 2', 'Message 3']
@@ -29,6 +29,8 @@ function App() {
       <ClassButton />
       <h2>Example Class Button</h2>
       <ExampleClassButton />
+      <h2>Alphabet Button</h2>
+      <AlphabetButton />
     </div>
   );
 }

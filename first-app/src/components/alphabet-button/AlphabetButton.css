@@ -1,0 +1,8 @@
+.alphabet-button {
+  font-weight: bold;
+  color: black;
+  background-color: yellow;
+  border: 1px solid black;
+  font-size: 1.2rem;
+  padding: 10px;
+}
