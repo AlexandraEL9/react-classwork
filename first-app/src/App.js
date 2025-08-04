@@ -1,5 +1,7 @@
 import './App.css';
 import Button from './components/button/Button';
+import ClassButton from './components/class-button/ClassButton';
+import ExampleClassButton from './components/example-class-button/ExampleClassButton';
 
 
 function App() {
@@ -23,6 +25,10 @@ function App() {
           ]
         }
       />
+      <h2>Class Button Example</h2>
+      <ClassButton />
+      <h2>Example Class Button</h2>
+      <ExampleClassButton />
     </div>
   );
 }
