@@ -3,6 +3,7 @@ import Button from './components/button/Button';
 import ClassButton from './components/class-button/ClassButton';
 import ExampleClassButton from './components/example-class-button/ExampleClassButton';
 import AlphabetButton from './components/alphabet-button/AlphabetButton';
+import HookButton from './components/hook-button/HookButton';
 
 function App() {
   const buttonOneMessageArray = ['Message 1', 'Message 2', 'Message 3']
@@ -31,6 +32,8 @@ function App() {
       <ExampleClassButton />
       <h2>Alphabet Button</h2>
       <AlphabetButton />
+      <h2>Hook Button</h2>
+      <HookButton />
     </div>
   );
 }
