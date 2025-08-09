@@ -39,13 +39,13 @@ npm start
 ```
 This creates a full React project with a file structure ready to explore.
 
-npx runs packages without needing to install them.
+- `npx` runs packages without needing to install them.
 
-create-react-app my-app scaffolds a complete React project called my-app.
+- `create-react-app my-app` scaffolds a complete React project called my-app.
 
-cd my-app navigates into the project directory.
+- `cd my-app` navigates into the project directory.
 
-npm start launches the local dev server at http://localhost:3000.
+- `npm start launches the local dev server at http://localhost:3000.
 
 ### Exercise 1: Inspect the Project
 Task 1: Compare JSX tags with normal HTML tags
@@ -517,6 +517,10 @@ Create a new button component using **class syntax**:
 - Can reuse the old button styling.
 - Don’t worry about functionality yet — just the structure.
 
+#### Steps:
+1. add `ClassButton` folder into components folder
+2. add `ClassButton.js` and `ClassButton.css` in the folder 
+
 ---
 
 ## 💡 Walkthrough: State in Class Components
@@ -692,6 +696,12 @@ function Counter() {
   );
 }
 ```
+OR
+```jsx
+function Button(props) {
+  const []
+}
+```
 
 ### The `useEffect` Hook
 
@@ -721,7 +731,7 @@ Try this:
 
 ## 💭 Class vs Functional Components
 
-- Functional components with hooks are now the recommended approach.
+- **Functional components with hooks are now the recommended approach.**
 - Class components are still valid and supported but less common in modern codebases.
 
 ---

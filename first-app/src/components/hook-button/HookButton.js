@@ -3,13 +3,15 @@ import './HookButton.css';
 
 const HookButton = () => {
   const [buttonText, setButtonText] = useState('Click Me!');
+  // array of messages to cycle through
   const messages = [
     '1, 2, Button my shoe',
     '3, 4, Knock at the door',
     '5, 6, Pick up sticks',
     '7, 8, lay them straight',
   ];
-
+  // State to keep track of the number of clicks
+  // Start with -1 so the first click shows the first message (was starting on second message before)
   const [clickCount, setClickCount] = useState(-1);
 
   // Log "Hello World" only once when component mounts
