@@ -6,6 +6,9 @@ import ClassButton from './components/class-button/ClassButton';
 import ExampleClassButton from './components/example-class-button/ExampleClassButton';
 import AlphabetButton from './components/alphabet-button/AlphabetButton';
 import HookButton from './components/hook-button/HookButton';
+//import Counter from './Counter'; // Importing the Counter component
+import ReduxButton from './ReduxButton.js'; // Importing the ReduxButton component
+
 
 function App() {
   const buttonOneMessageArray = ['Message 1', 'Message 2', 'Message 3']
@@ -36,6 +39,9 @@ function App() {
       <AlphabetButton />
       <h2>Hook Button</h2>
       <HookButton />
+      <h2>Redux Counter</h2>
+      {/* <Counter /> */}
+      <ReduxButton />
     </div>
   );
 }

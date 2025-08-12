@@ -1049,3 +1049,180 @@ function WeatherWidget({ city }) {
 - Think about **what APIs or features you could embed or fetch** for your project.
 
 ---
+
+# Lesson 13: Testing and Redux
+
+## 1. React Testing
+
+### Overview
+React testing ensures components work as expected. There are two main approaches:
+1. **Render in a simple test environment** — fast, but not as realistic as a browser.
+2. **End-to-end (E2E) testing** — tests the full app in a realistic environment, but slower.
+
+Key considerations:
+- **Speed vs Realism**: Faster tests are less realistic; realistic tests are slower.
+- **How much to mock**: Decide the scope (entire component, sub-components, specific elements).
+
+### Tools
+- **Jest**: Popular JavaScript testing library, often used with React.
+- **React Testing Library**: Works with Jest to test React DOM elements.
+
+### Snapshot Testing Example (Jest)
+```javascript
+import React from 'react';
+import renderer from 'react-test-renderer';
+import MyComponent from './MyComponent';
+
+test('matches the snapshot', () => {
+  const tree = renderer.create(<MyComponent />).toJSON();
+  expect(tree).toMatchSnapshot();
+});
+```
+
+---
+
+## 2. Redux Overview
+
+Redux provides a **global store** for state management.  
+Instead of passing props through many layers, all components can directly **dispatch** data to the store and **fetch** from it.
+
+Analogy: A **bank** where components **deposit** (dispatch) and **withdraw** (fetch) data.
+
+### Benefits
+- Easy state sharing between components.
+- Avoids complex prop-passing.
+
+---
+
+## 3. Redux Setup
+
+### Structure
+- Wrap the entire app with `<Provider>` at the top level.
+- Use Redux hooks in components:
+  - `useSelector` → Read from store.
+  - `useDispatch` → Send actions to store.
+
+```javascript
+// index.js
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './reducers';
+import App from './App';
+
+const store = configureStore({ reducer: rootReducer });
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+---
+
+## 4. Redux Actions
+
+Actions are plain JavaScript objects describing changes to state.
+
+**Structure:**
+```javascript
+const action = {
+  type: 'INCREMENT', // required
+  payload: 1         // optional data
+};
+```
+
+Analogy: **Envelope** with:
+- Stamp → `type`
+- Letter → `payload`
+
+---
+
+## 5. Reducers
+
+Reducers decide **how the store changes** based on the action type & payload.
+
+```javascript
+function counterReducer(state = { count: 0 }, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + action.payload };
+    default:
+      return state; // Always return full state
+  }
+}
+```
+
+> ⚠️ **Reducers overwrite state** — they must always return the full state, not partial updates.
+
+---
+
+## 6. Redux Toolkit
+
+Simplifies Redux setup by reducing boilerplate.
+
+### Steps:
+1. Install:
+```bash
+npm install @reduxjs/toolkit react-redux
+```
+2. Create store with `configureStore()`.
+3. Wrap app in `<Provider>`.
+4. Create state slice with `createSlice()`.
+5. Add slice reducers to store.
+6. Use `useSelector` and `useDispatch` in components.
+
+```javascript
+// counterSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+export const counterSlice = createSlice({
+  name: 'counter',
+  initialState: { value: 0 },
+  reducers: {
+    increment: (state) => { state.value += 1; },
+    incrementByAmount: (state, action) => { state.value += action.payload; }
+  }
+});
+
+export const { increment, incrementByAmount } = counterSlice.actions;
+export default counterSlice.reducer;
+```
+
+---
+
+## 7. Hooks Usage Example
+```javascript
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from './counterSlice';
+
+export default function Counter() {
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={() => dispatch(increment())}>Increment</button>
+    </div>
+  );
+}
+```
+
+---
+
+## 8. Exercise: Add Redux to a Project
+
+- Create a global store with a default message (e.g. `"Hello World"`).
+- In a button component:
+  - Use `useSelector` to display the store message.
+  - (Optional) Add `onClick` to `dispatch` a new message.
+
+---
+
+## 9. Summary
+- Testing in React: Choose between speed and realism.
+- Redux: Central global store for state.
+- Redux Toolkit: Reduces setup complexity.
